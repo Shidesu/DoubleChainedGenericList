@@ -25,27 +25,37 @@ void clean(ListeChainee *listeChainee);
 
 
 void addToTail(ListeChainee *listeChainee, void *data) {
+    size_t *listSize = &listeChainee->size;
+    Node ***adresses = &listeChainee->adresses;
+    Node **head = &listeChainee->head;
+    Node **tail = &listeChainee->tail;
+
     Node *temp = calloc(1, sizeof(Node));
     temp->data = data;
 
-    if (listeChainee->size == 0) {
-        listeChainee->head = temp;
-        listeChainee->tail = temp;
-        listeChainee->size++;
-        listeChainee->adresses = realloc(listeChainee->adresses, listeChainee->size * sizeof(Node *));
-        listeChainee->adresses[listeChainee->size - 1] = temp;
+    if (*listSize == 0) {
+        *head = temp;
+        *tail = temp;
+        (*listSize)++;
+        *adresses = realloc(*adresses, *listSize * sizeof(Node *));
+        (*adresses)[*listSize - 1] = temp;
     } else {
-        temp->previous = listeChainee->tail;
-        listeChainee->tail->next = temp;
-        temp->previous = listeChainee->tail;
-        listeChainee->tail = temp;
-        listeChainee->size++;
-        listeChainee->adresses = realloc(listeChainee->adresses, listeChainee->size * sizeof(Node *));
-        listeChainee->adresses[listeChainee->size - 1] = temp;
+        temp->previous = *tail;
+        (*tail)->next = temp;
+        temp->previous = *tail;
+        *tail = temp;
+        (*listSize)++;
+        *adresses = realloc(*adresses, *listSize * sizeof(Node *));
+        (*adresses)[*listSize - 1] = temp;
     }
 }
 
 void addToHead(ListeChainee *listeChainee, void *data) {
+    size_t *listSize = &listeChainee->size;
+    Node ***adresses = &listeChainee->adresses;
+    Node **head = &listeChainee->head;
+    Node **tail = &listeChainee->tail;
+
     Node *temp = calloc(1, sizeof(Node));
     temp->data = data;
 
@@ -53,26 +63,24 @@ void addToHead(ListeChainee *listeChainee, void *data) {
         printf("%zu\n", listeChainee->adresses[i]);
 
 
-    if (listeChainee->size == 0) {
-        listeChainee->head = temp;
-        listeChainee->tail = temp;
-        listeChainee->size++;
-        listeChainee->adresses = realloc(listeChainee->adresses, listeChainee->size * sizeof(Node *));
-        listeChainee->adresses[0] = temp;
+    if (*listSize == 0) {
+        *head = temp;
+        *tail = temp;
+        (*listSize)++;
+        *adresses = realloc(*adresses, *listSize * sizeof(Node *));
+        (*adresses)[0] = temp;
     } else {
-        Node *currentNode;
+        Node *currentNode = *head;
 
-        temp->next = listeChainee->head;
-        listeChainee->head->previous = temp;
-        listeChainee->head = temp;
-        listeChainee->size++;
-        listeChainee->adresses = realloc(listeChainee->adresses, listeChainee->size * sizeof(Node *));
-        listeChainee->adresses[0] = temp;
+        temp->next = *head;
+        (*head)->previous = temp;
+        *head = temp;
+        (*listSize)++;
+        *adresses = realloc(*adresses, *listSize * sizeof(Node *));
+        (*adresses)[0] = temp;
 
-        currentNode = listeChainee->head;
-
-        for (int i = 1; i < listeChainee->size; i++) {
-            listeChainee->adresses[i] = currentNode;
+        for (int i = 1; i < *listSize; i++) {
+            (*adresses)[i] = currentNode;
             currentNode = currentNode->next;
         }
     }
@@ -228,15 +236,6 @@ void removeNodeAt(ListeChainee *listeChainee, int index) {
         removeNode(listeChainee, node);
 
         free(oldTable);
-
-        /*realloc(listeChainee->adresses, listeChainee->size * sizeof(Node *));
-
-        for (int i = 0, j = 0; i < listeChainee->size; i++) {
-            if (i != index) {
-                listeChainee->adresses[j] = &oldTable[i];
-                j++;
-            }
-        }*/
     }
 }
 
@@ -257,7 +256,7 @@ void clean(ListeChainee *listeChainee) {
     }
 }
 
-void initialiseList(ListeChainee *listeChainee) {
+void initializeList(ListeChainee *listeChainee) {
     listeChainee->head = NULL;
     listeChainee->tail = NULL;
     listeChainee->size = 0;

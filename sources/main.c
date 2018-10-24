@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include "../headers/listeChainee.h"
-//#include <listeChainee.h>
 
 int main() {
     ListeChainee maListe;
 
-    initialiseList(&maListe);
+
+    initializeList(&maListe);
 
     int *test = calloc(1, sizeof(int));
 
@@ -38,7 +38,7 @@ int main() {
 
     maListe.getAll(&maListe, printIntValues);
 
-    maListe.removeAt(&maListe, 2);
+    maListe.removeAt(&maListe, 0);
 
     maListe.getAll(&maListe, printIntValues);
 
@@ -56,6 +56,8 @@ int main() {
 
     printf("Hello, World!\n");
     maListe.getAll(&maListe, printIntValues);
+
+    system("pause");
 
     return 0;
 }
