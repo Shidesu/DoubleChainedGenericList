@@ -15,6 +15,9 @@ int main() {
         test = calloc(1, sizeof(int));
         *test = 30;
         maListe.addToHead(&maListe, test);
+         test = calloc(1, sizeof(int));
+        *test = 42;
+        maListe.set(&maListe, 0, test);
         test = calloc(1, sizeof(int));
         *test = 61;
         maListe.addToTail(&maListe, test);

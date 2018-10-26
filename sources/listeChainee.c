@@ -27,6 +27,13 @@ void set(ListeChainee *listeChainee, int index, void *value);
 
 void setAsInt(ListeChainee *listeChainee, int index, void *value);
 
+void set(ListeChainee *listeChainee, int index, void *value){
+    
+    free(listeChainee->adresses[index]->data);
+    
+    listeChainee->adresses[index]->data = value;
+}
+
 void addToTail(ListeChainee *listeChainee, void *data) {
     size_t *listSize = &listeChainee->size;
     Node ***adresses = &listeChainee->adresses;
@@ -276,8 +283,9 @@ void initializeList(ListeChainee *listeChainee) {
     listeChainee->removeAll = removeAll;
     listeChainee->remove = removeNode;
     listeChainee->removeAt = removeNodeAt;
-    listeChainee->clean = clean;
+    listeChainee->clear = clean;
     listeChainee->get = get;
+    listeChainee->set = set;
 }
 
 Node *get(ListeChainee *listeChainee, int index) {
