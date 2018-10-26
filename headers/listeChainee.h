@@ -24,32 +24,49 @@ struct ListeChainee {
     Node *head;
     Node *tail;
     Node **adresses;
-
+    
     void (*addToTail)(ListeChainee *listeChainee, void *data);
-
+    
     void (*addToHead)(ListeChainee *listeChainee, void *data);
-
+    
+    /**
+     * Insert the given data at the given index of the list.
+     * It's creating a new node, not replacing the old one.
+     * The old one is moved from
+     *
+     * @param listeChainee A pointer to the list to edit.
+     * @param data         Data to add at given
+     * @param index
+     */
+    
     void (*insertAt)(ListeChainee *listeChainee, void *data, int index);
-
+    
+    /**
+     * Get all the elements from the list and pass them to the given function.
+     *
+     * @param listeChainee A pointer to the list to get data from
+     * @param function     The function to apply to the data.
+     */
+    
     void (*getAll)(ListeChainee *listeChainee, void (*function)(void *values[], int size));
-
+    
     /**
      * Remove all the elements from the list.
      *
      * @param listeChainee  A pointer to the list to edit.
      */
-
+    
     void (*removeAll)(ListeChainee *listeChainee);
-
+    
     /**
      * Remove the given element from the list.
      *
      * @param listeChainee  A pointer to the list to edit.
      * @param node          Pointer to the node you want to remove.
      */
-
+    
     void (*remove)(ListeChainee *listeChainee, Node *node);
-
+    
     /**
      * Remove the element at given index from the list.
      *
@@ -57,9 +74,9 @@ struct ListeChainee {
      * @param index         Index of the value you want to remove.
      */
     void (*removeAt)(ListeChainee *listeChainee, int index);
-
+    
     void (*clean)(ListeChainee *listeChainee);
-
+    
     /**
      *
      * Get the element at the given index from the list.
