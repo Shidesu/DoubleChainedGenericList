@@ -7,4 +7,13 @@ cmake_install.cmake
 CMakeLists.txt
 CMakeCache.txt
 Makefile
-docu/
+bibliothèque liste chaînée/
+cmake-build-debug-wsl/
+cmake-build-minsizerel/
+cmake-build-release/
+cmake-build-relwithdebinfo/
+bibliothèque liste chaînée.7z
+doc/xml/
+doc/rtf/
+doc/man/
+doc/latex/
