@@ -4,9 +4,7 @@ cmake-build-debug/
 listeChainee.cbp
 libchainedList.a
 cmake_install.cmake
-CMakeLists.txt
 CMakeCache.txt
-Makefile
 bibliothèque liste chaînée/
 cmake-build-debug-wsl/
 cmake-build-minsizerel/
@@ -17,3 +15,4 @@ doc/xml/
 doc/rtf/
 doc/man/
 doc/latex/
+Makefile
